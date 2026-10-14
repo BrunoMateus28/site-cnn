@@ -16,6 +16,7 @@ export default function Footer() {
                 alt="Cesta no Ninho" 
                 className="w-12 h-12 rounded-full object-contain bg-white p-1 border border-[#EBE3DC]" 
               />
+              <span className="font-serif text-2xl tracking-wide text-white">Cesta no Ninho</span>
             </div>
             <p className="text-sm text-[#F4EFEA]/80 font-light leading-relaxed max-w-sm">
               Presentes personalizados, cestas de café da manhã e corporativas. Cuidado e atenção aos detalhes em cada entrega.
