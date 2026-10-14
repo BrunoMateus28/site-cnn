@@ -43,7 +43,7 @@ export default function Testimonials() {
     <section id="depoimentos" className="py-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden">
       <div className="text-center max-w-2xl mx-auto mb-12 space-y-3">
         <h2 className="text-3xl sm:text-4xl font-serif text-[#4A3B32]">Palavras de Carinho</h2>
-        <p className="text-[#6B5B52] font-light">O que nossos clientes dizem sobre nossas experiências[cite: 1].</p>
+        <p className="text-[#6B5B52] font-light">O que nossos clientes dizem sobre nossas experiências.</p>
       </div>
 
       <div className="relative max-w-3xl mx-auto overflow-hidden px-4">

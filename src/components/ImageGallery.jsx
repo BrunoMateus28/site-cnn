@@ -35,7 +35,7 @@ export default function ImageGallery() {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
           <div className="space-y-3 max-w-xl">
             <h2 className="text-3xl sm:text-4xl font-serif text-[#4A3B32]">Galeria de Inspirações</h2>
-            <p className="text-[#6B5B52] font-light">Detalhes que encantam e transformam momentos em memórias inesquecíveis[cite: 1].</p>
+            <p className="text-[#6B5B52] font-light">Detalhes que encantam e transformam momentos em memórias inesquecíveis.</p>
           </div>
           
           <div className="flex gap-2 mt-6 md:mt-0">
