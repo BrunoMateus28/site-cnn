@@ -3,7 +3,7 @@ import caneca from '../assets/caneca.png';
 import capemisaBone from '../assets/capemisa-bone.png';
 import capemisaTote from '../assets/capemisa-tote.png';
 import cestaHappyHour from '../assets/cesta-happy-hour.png';
-import cestaPai from '../assets/cesta-pai.png';
+import cestaBarista from '../assets/cesta-barista.png';
 import cestaRomantica from '../assets/cesta-romantica.png';
 import cestaSazional from '../assets/cesta-sazional.png';
 import copo from '../assets/copo.png';
@@ -20,7 +20,7 @@ export const ASSET_IMAGES = {
   capemisaBone,
   capemisaTote,
   cestaHappyHour,
-  cestaPai,
+  cestaBarista,
   cestaRomantica,
   cestaSazional,
   copo,
@@ -65,7 +65,7 @@ export const BASKETS_DATA = [
     id: 'barista',
     title: 'Cesta Barista',
     description: 'Uma experiência aromática e aconchegante para os amantes de café.',
-    image: ASSET_IMAGES.caneca,
+    image: ASSET_IMAGES.cestaBarista,
     defaultItems: [
       { name: 'Prensa francesa', price: 80 },
       { name: 'Caneca personalizada', price: 35 },
