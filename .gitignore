@@ -30,5 +30,3 @@ Thumbs.db
 # Arquivos de digest, anotações de IA e resumos locais
 digest*
 *digest*
-*.txt
-requirements.txt
