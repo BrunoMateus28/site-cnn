@@ -16,7 +16,6 @@ export default function Footer() {
                 alt="Cesta no Ninho" 
                 className="w-12 h-12 rounded-full object-contain bg-white p-1 border border-[#EBE3DC]" 
               />
-              <span className="font-serif text-2xl tracking-wide text-[#4A3B32]">Cesta no Ninho</span>
             </div>
             <p className="text-sm text-[#F4EFEA]/80 font-light leading-relaxed max-w-sm">
               Presentes personalizados, cestas de café da manhã e corporativas. Cuidado e atenção aos detalhes em cada entrega.
@@ -39,13 +38,23 @@ export default function Footer() {
                 <MapPin className="w-4 h-4 text-[#D4A373] shrink-0" />
                 <span>Tijuca, Rio de Janeiro, RJ, Brasil</span>
               </li>
-              <li className="flex items-center gap-3">
-                <Phone className="w-4 h-4 text-[#D4A373] shrink-0" />
-                <span>+55 (21) 99833-2822</span>
+              <li>
+                <a
+                  href="tel:+5521998332822"
+                  className="flex items-center gap-3 hover:text-white transition-colors"
+                >
+                  <Phone className="w-4 h-4 text-[#D4A373] shrink-0" />
+                  <span>+55 (21) 99833-2822</span>
+                </a>
               </li>
-              <li className="flex items-center gap-3">
-                <Mail className="w-4 h-4 text-[#D4A373] shrink-0" />
-                <span>cestanoninho@gmail.com</span>
+              <li>
+                <a
+                  href="mailto:cestanoninho@gmail.com"
+                  className="flex items-center gap-3 hover:text-white transition-colors"
+                >
+                  <Mail className="w-4 h-4 text-[#D4A373] shrink-0" />
+                  <span className="break-all">cestanoninho@gmail.com</span>
+                </a>
               </li>
             </ul>
           </div>
