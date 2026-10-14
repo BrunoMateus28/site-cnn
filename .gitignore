@@ -1,0 +1,34 @@
+# Dependências
+node_modules/
+.pnp
+.pnp.js
+
+# Build / Produção
+dist/
+build/
+.output/
+
+# Logs de execução e depuração
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Variáveis de ambiente e segredos
+.env
+.env.local
+.env.development.local
+.env.production.local
+
+# Arquivos de Sistema Operacional e Editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Arquivos de digest, anotações de IA e resumos locais
+digest*
+*digest*
+*.txt
+requirements.txt
