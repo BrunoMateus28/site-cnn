@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect, useRef, useCallback } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { ASSET_IMAGES } from '../data/basketsData';
 
@@ -10,24 +10,71 @@ const galleryItems = [
   { src: ASSET_IMAGES.brindeSazional, title: 'Brindes Sazonais' },
 ];
 
-export default function ImageGallery() {
-  const [currentIndex, setCurrentIndex] = useState(0);
+const N = galleryItems.length;
+const GAP = 24; // gap-6 = 1.5rem = 24px
+const LOOP_ITEMS = [...galleryItems, ...galleryItems, ...galleryItems];
 
-  // Troca automática deslizando a cada 4.5 segundos
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % galleryItems.length);
-    }, 4500);
-    return () => clearInterval(timer);
+export default function ImageGallery() {
+  // Começa na cópia do meio (índice N) para poder ir para os dois lados
+  const [index, setIndex] = useState(N);
+  const [animate, setAnimate] = useState(true);
+  const [step, setStep] = useState(0);
+
+  const firstItemRef = useRef(null);
+  const lockedRef = useRef(false);
+
+  // Mede a largura real do card + gap (funciona no mobile e no desktop)
+  const measure = useCallback(() => {
+    if (firstItemRef.current) {
+      setStep(firstItemRef.current.offsetWidth + GAP);
+    }
   }, []);
 
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % galleryItems.length);
+  useLayoutEffect(() => {
+    measure();
+    window.addEventListener('resize', measure);
+    return () => window.removeEventListener('resize', measure);
+  }, [measure]);
+
+  const move = useCallback((direction) => {
+    if (lockedRef.current) return; // ignora cliques durante a animação
+    lockedRef.current = true;
+    setAnimate(true);
+    setIndex((prev) => prev + direction);
+  }, []);
+
+  const nextSlide = useCallback(() => move(1), [move]);
+  const prevSlide = useCallback(() => move(-1), [move]);
+
+  // Autoplay
+  useEffect(() => {
+    const timer = setInterval(nextSlide, 4500);
+    return () => clearInterval(timer);
+  }, [nextSlide]);
+
+  // Ao terminar a animação, se saiu da cópia do meio, "teletransporta"
+  // para a posição equivalente na cópia do meio, sem animação.
+  const handleTransitionEnd = (e) => {
+    if (e.target !== e.currentTarget) return;
+
+    if (index >= N * 2) {
+      setAnimate(false);
+      setIndex(index - N);
+    } else if (index < N) {
+      setAnimate(false);
+      setIndex(index + N);
+    }
+    lockedRef.current = false;
   };
 
-  const prevSlide = () => {
-    setCurrentIndex((prev) => (prev === 0 ? galleryItems.length - 1 : prev - 1));
-  };
+  // Reativa a animação logo após o salto silencioso
+  useEffect(() => {
+    if (animate) return;
+    const id = requestAnimationFrame(() => {
+      requestAnimationFrame(() => setAnimate(true));
+    });
+    return () => cancelAnimationFrame(id);
+  }, [animate]);
 
   return (
     <section id="galeria" className="py-24 bg-[#F4EFEA]/30 overflow-hidden">
@@ -37,16 +84,16 @@ export default function ImageGallery() {
             <h2 className="text-3xl sm:text-4xl font-serif text-[#4A3B32]">Galeria de Inspirações</h2>
             <p className="text-[#6B5B52] font-light">Detalhes que encantam e transformam momentos em memórias inesquecíveis.</p>
           </div>
-          
+
           <div className="flex gap-2 mt-6 md:mt-0">
-            <button 
+            <button
               onClick={prevSlide}
               className="bg-white hover:bg-[#F4EFEA] text-[#5C4033] p-3 rounded-full border border-[#EBE3DC] shadow-sm transition-colors cursor-pointer"
               aria-label="Anterior"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
-            <button 
+            <button
               onClick={nextSlide}
               className="bg-white hover:bg-[#F4EFEA] text-[#5C4033] p-3 rounded-full border border-[#EBE3DC] shadow-sm transition-colors cursor-pointer"
               aria-label="Próximo"
@@ -56,20 +103,20 @@ export default function ImageGallery() {
           </div>
         </div>
 
-        {/* Trilha de Deslizamento Contínuo */}
         <div className="overflow-hidden">
-          <div 
-            className="flex gap-6 transition-transform duration-700 ease-in-out"
-            style={{ transform: `translateX(-${currentIndex * (100 / 3)}%)` }}
+          <div
+            className={`flex gap-6 ${animate ? 'transition-transform duration-700 ease-in-out' : ''}`}
+            style={{ transform: `translateX(-${index * step}px)` }}
+            onTransitionEnd={handleTransitionEnd}
           >
-            {/* Duplicamos os itens para garantir o preenchimento fluido da trilha de 3 em 3 */}
-            {[...galleryItems, ...galleryItems, ...galleryItems].map((item, idx) => (
-              <div 
-                key={idx} 
-                className="w-full md:w-[calc(33.333%-16px)] shrink-0 relative h-[380px] rounded-3xl overflow-hidden shadow-sm border border-[#EBE3DC] group"
+            {LOOP_ITEMS.map((item, idx) => (
+              <div
+                key={idx}
+                ref={idx === 0 ? firstItemRef : null}
+                className="w-full md:w-[calc((100%-48px)/3)] shrink-0 relative h-[380px] rounded-3xl overflow-hidden shadow-sm border border-[#EBE3DC] group"
               >
-                <img 
-                  src={item.src} 
+                <img
+                  src={item.src}
                   alt={item.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
