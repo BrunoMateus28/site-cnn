@@ -10,7 +10,7 @@ export default function Hero() {
             <Sparkles className="w-3.5 h-3.5 text-[#D4A373]" /> Presentes Exclusivos Sob Encomenda
           </div>
           <h1 className="text-4xl sm:text-6xl font-serif font-normal text-white leading-tight">
-            Seu lugar de carinho.
+            <span className="sr-only">Cesta no Ninho: </span>Seu lugar de carinho.
           </h1>
           <p className="text-lg sm:text-xl text-[#F4EFEA]/90 font-light leading-relaxed">
             Cestas e presentes que unem beleza, afeto e sofisticação. Para você. Para quem você ama. Para sua empresa.
