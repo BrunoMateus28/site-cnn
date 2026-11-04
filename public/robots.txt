@@ -1,4 +1,4 @@
-# robots.txt
 User-agent: *
 Allow: /
-Sitemap: https://SEU-DOMINIO.com.br/sitemap.xml
+
+Sitemap: https://site-cnn.vercel.app/sitemap.xml
