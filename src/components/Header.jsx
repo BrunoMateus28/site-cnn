@@ -5,14 +5,14 @@ import { ASSET_IMAGES } from '../data/basketsData';
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const navItems = [
-    { label: 'A Essência', href: '#sobre' },
-    { label: 'Galeria', href: '#galeria' }, // <- Adicionado à barra de navegação
-    { label: 'Coleções', href: '#colecoes' },
-    { label: 'Corporativo', href: '#corporativo' },
-    { label: 'Depoimentos', href: '#depoimentos' },
-    { label: 'Contato', href: '#contato' },
-  ];
+const navItems = [
+  { label: 'A Essência', href: '#sobre' },
+  { label: 'Galeria', href: '#galeria' },
+  { label: 'Coleções', href: '#colecoes' },
+  { label: 'Corporativo', href: '#corporativo' },
+  { label: 'Dúvidas', href: '#faq' },
+  { label: 'Depoimentos', href: '#depoimentos' },
+];
 
   return (
     <header className="sticky top-0 z-50 bg-[#FDFBF7]/90 backdrop-blur-md border-b border-[#EFECE6]">

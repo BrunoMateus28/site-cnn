@@ -2,9 +2,10 @@ import React from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
-import ImageGallery from './components/ImageGallery'; // Novo componente de galeria
+import ImageGallery from './components/ImageGallery';
 import BasketCard from './components/BasketCard';
 import Corporate from './components/Corporate';
+import Faq from './components/Faq';
 import Testimonials from './components/Testimonials';
 import Footer from './components/Footer';
 import { BASKETS } from './data/basketsData';
@@ -16,7 +17,6 @@ export default function App() {
       <Hero />
       <About />
 
-      {/* Galeria de Fotos Rotativa */}
       <ImageGallery />
 
       <section id="colecoes" className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -35,6 +35,7 @@ export default function App() {
       </section>
 
       <Corporate />
+      <Faq /> 
       <Testimonials />
       <Footer />
     </div>
